@@ -1,6 +1,6 @@
 # BaseConvert Pro
 
-Disclaimer: This project was vibecoded using Kimi 2.6 simply because I needed a good base converter and couldn't be bothered to write it.
+**Disclaimer**: This project was vibecoded using Kimi 2.6 simply because I needed a good base converter and couldn't be bothered to write it.
 
 A beautiful, real-time multi-base converter TUI built in Zig.
 
