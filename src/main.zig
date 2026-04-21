@@ -162,6 +162,7 @@ const App = struct {
     last_blink: i64 = 0,
 
     pub fn init(self: *App) !void {
+        const now = std.time.milliTimestamp();
         self.* = .{
             .gpa = .{},
             .inputs = .{ .{}, .{}, .{}, .{} },
@@ -175,7 +176,7 @@ const App = struct {
             .status_msg = null,
             .status_time = 0,
             .blink_visible = true,
-            .last_blink = 0,
+            .last_blink = now,
         };
         self.custom_base_input.insertSlice("36");
     }
@@ -378,6 +379,12 @@ const App = struct {
         switch (event) {
             .init => {
                 try ctx.requestFocus(self.widget());
+                try ctx.tick(530, self.widget());
+            },
+            .tick => {
+                self.updateBlink();
+                ctx.redraw = true;
+                try ctx.tick(530, self.widget());
             },
             .key_press => |key| {
                 if (key.matches('c', .{ .ctrl = true })) {
